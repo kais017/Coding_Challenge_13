@@ -23,6 +23,7 @@ const removeButton = document.createElement('button');
 removeButton.textContent = 'Remove';
 removeButton.setAttribute('class', 'remove-btn');
 
+// task 4: adding an event listener on the container
 removeButton.addEventListener('click', function(event) {
     event.stopPropagation(); 
     employeeCard.remove();
@@ -55,4 +56,13 @@ function employeeUpdates() {
 }
 // calling the function
 employeeUpdates();
+
+// Task 4: Implementing Removal of Employee Cards with Event Bubbling
+// (in task 2)
+// adding an event listener on employee container
+const employeeContainer = document.getElementById('employeeContainer');
+employeeContainer.addEventListener('click', function() {
+    console.log("Card has been clicked."); // displays message in the console when a card is clicked
+});
+
 
