@@ -39,3 +39,20 @@ const employeeContainer = document.getElementById('employeeContainer');
 createEmployeeCard('Batman', 'Superhero');
 createEmployeeCard('Penguin', 'Villain');
 
+// Task 3: Converting NodeLists to Arrays for Bulk Updates
+
+//creating function to bulk update employee cards
+function employeeUpdates() {
+    const employeeCards = document.querySelectorAll('.employee-card');
+// convertin NodeList to array
+    const employeeCardArray = Array.from(employeeCards);
+
+    // creating an array method to update the card style
+    employeeCardArray.forEach(card => {
+        card.style.backgroundColor = 'pink'; // changing background to pink
+        card.style.border = '1px solid purple' // changing border color to purple
+});
+}
+// calling the function
+employeeUpdates();
+
