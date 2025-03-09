@@ -5,17 +5,17 @@ function createEmployeeCard(name, position) {
 
 // create employee card element
 const employeeCard = document.createElement('div');
-employeeCard.setAttribute('class','employee-card');
-employeeCard.setAttribute('id', 'employeeCard');
+employeeCard.setAttribute('class','employee-card');  // setting class attribute
+employeeCard.setAttribute('id', 'employeeCard');  // setting an id attribute
 
 //creating employee name element
 const employeeName = document.createElement('h2');
-employeeName.textContent = name;
+employeeName.textContent = name; 
 employeeCard.appendChild(employeeName);
 
 //creating employee position element with description
 const employeePosition = document.createElement('p');
-employeePosition.textContent = position;
+employeePosition.textContent = position; 
 employeeCard.appendChild(employeePosition);
 
 // making a remove button that deletes the card
@@ -34,18 +34,54 @@ employeeCard.appendChild(removeButton);
 const employeeContainer = document.getElementById('employeeContainer');
     employeeContainer.appendChild(employeeCard);
 
+//task 5 - creating an edit button
+// allows users to edit the employee card
+const editButton = document.createElement('button');
+editButton.textContent = 'Edit';
+editButton.setAttribute('class','edit-btn');
+employeeCard.appendChild(editButton);
+
+// adding an event listener for edit button 
+editButton.addEventListener('click', function() {
+    // Check if the card is already in edit mode
+    if (employeeName.querySelector('input') && employeePosition.querySelector('input')) {
+
+        const nameUpdate = employeeName.querySelector('input').value;
+        const positionUpdate = employeePosition.querySelector('input').value;
+
+       // update information in card: name and position
+        employeeName.textContent = nameUpdate;
+        employeePosition.textContent = positionUpdate;
+
+       // changes button back to edit
+        editButton.textContent = 'Edit';
+
+       // outputs information changes in dashboard
+        employeeName.innerHTML = nameUpdate;
+        employeePosition.innerHTML = positionUpdate;
+    } else {
+        
+        employeeName.innerHTML = `<input type="text" value="${employeeName.textContent}">`;
+        employeePosition.innerHTML = `<input type="text" value="${employeePosition.textContent}">`;
+
+      // changes button back to save
+        editButton.textContent = 'Save';
+     }
+  });
 }
+
+
 
 //calling the function to see the employee cards
 createEmployeeCard('Batman', 'Superhero');
-createEmployeeCard('Penguin', 'Villain');
+createEmployeeCard('Joker', 'Villain');
 
 // Task 3: Converting NodeLists to Arrays for Bulk Updates
 
 //creating function to bulk update employee cards
 function employeeUpdates() {
     const employeeCards = document.querySelectorAll('.employee-card');
-// convertin NodeList to array
+// converting NodeList to array
     const employeeCardArray = Array.from(employeeCards);
 
     // creating an array method to update the card style
@@ -64,5 +100,8 @@ const employeeContainer = document.getElementById('employeeContainer');
 employeeContainer.addEventListener('click', function() {
     console.log("Card has been clicked."); // displays message in the console when a card is clicked
 });
+
+// Task 5: Inline Editing of Employee Details
+// in task 2
 
 
